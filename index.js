@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/signup', async (req, res) => {
   const { fullName, dateOfBirth, address, phoneNumber, email, password } = req.body;
-  const queryText = 'INSERT INTO public.users (full_name, date_of_birth, address, phone_number, email, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
+  const queryText = 'INSERT INTO users (full_name, date_of_birth, address, phone_number, email, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
   try {
     const result = await db.query(queryText, [fullName, dateOfBirth, address, phoneNumber, email, password]);
     console.log('User signed up successfully:', result.rows[0]);
